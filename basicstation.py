@@ -19,6 +19,7 @@ class parser():
             'snr': { 'pattern': re.compile(r' snr=(?P<value>[0-9\.]+)'), 'process': float }, 
             'rssi': { 'pattern': re.compile(r' rssi=(?P<value>[\-0-9]+)'), 'process': int }, 
             'devaddr': { 'pattern': re.compile(r' DevAddr=(?P<value>[0-9A-F]+)'), 'process': None }, 
+            'sf': { 'pattern': re.compile(r' (?P<value>SF[0-9]*\/BW[0-9]*)'), 'process': None }, 
         }
         self.is_rx = re.compile(r'\[S2E:VERB\] RX ')
         self.is_tx = re.compile(r'\[S2E:INFO\] TX ::1 ')
