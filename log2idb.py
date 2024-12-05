@@ -34,16 +34,25 @@ for value in runner.run():
     #print("Received: {}".format(value))
     
     type = value.pop('type', None)
+    devaddr = value.pop('devaddr', None)
+    sf = value.pop('sf', None)
     timestamp = value.pop('timestamp', None)
     data = [
         {
             "measurement": DB_MEASUREMENT,
             "tags": {
                 "gateway_id": GATEWAY_ID,
-                "type": type
+                "type": type,
+                "devaddr": devaddr,
+                "sf": sf
             },
             "time": datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc).isoformat(),
-            "fields": value
+            "fields": {
+                "datarate": value.get("datarate"),
+                "frequency": value.get("frequency"),
+                "rssi": value.get("rssi"),
+                "snr": value.get("snr")
+            }
         }
     ]    
     client.write_points(data)
