@@ -9,7 +9,7 @@ from legacy import parser as legacy_parser
 PROTOCOL  = os.environ.get("PROTOCOL", "basicstation")
 CONTAINER_NAME = os.environ.get("CONTAINER_NAME", "basicstation")
 MQTT_HOST = os.environ.get("MQTT_HOST", "localhost")
-MQTT_PORT = os.environ.get("MQTT_PORT", 1883)
+MQTT_PORT = int(os.environ.get("MQTT_PORT", 1883))
 MQTT_USER = os.environ.get("MQTT_USER", "")
 MQTT_PASS = os.environ.get("MQTT_PASS", "")
 MQTT_TOPIC = os.environ.get("MQTT_TOPIC", "gateway/metrics")
