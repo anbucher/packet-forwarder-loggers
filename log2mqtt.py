@@ -20,7 +20,7 @@ MQTT_DATA_FORMAT = os.environ.get("MQTT_DATA_FORMAT", "json")
 def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_TOPIC)
 
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, 'packetforwarder')
 client.on_connect = on_connect
 if MQTT_USER:
     client.username_pw_set(MQTT_USER, password=MQTT_PASS)
